@@ -1,8 +1,10 @@
 import { VERSION } from "./version";
 import { authentication } from "./authentication";
-import { ContactsApi } from "./api/contactsApi";
+import { ContactsApi, updateContact } from "./api/contactsApi";
 import { WorkspacesApi } from "./api/workspacesApi";
-
+import { MessagesApi, sendTemplatedMessage } from "./api/messagesApi";
+import { DistributionListsApi, updateDistributionList } from "./api/distributionListsApi";
+import { TemplatesApi } from "./api/templatesApi";
 const handleHTTPError = (response, z) => {
   if (response.status >= 400) {
     throw new Error(`Unexpected status code ${response.status}`);
@@ -25,18 +27,15 @@ export const App = {
   // If you want to define optional resources to simplify creation of triggers, searches, creates - do that here!
   resources: {
     [ContactsApi.key]: ContactsApi,
-    [WorkspacesApi.key]: WorkspacesApi, 
+    [WorkspacesApi.key]: WorkspacesApi,
+    [MessagesApi.key]: MessagesApi,
+    [DistributionListsApi.key]: DistributionListsApi,
+    [TemplatesApi.key]: TemplatesApi
   },
 
-  // If you want your trigger to show up, you better include it here!
-  triggers: {
-  },
-
-  // If you want your searches to show up, you better include it here!
-  searches: {
-  },
-
-  // If you want your creates to show up, you better include it here!
   creates: {
+    contactUpdate: updateContact,
+    sendTemplatedMessage: sendTemplatedMessage,
+    [updateDistributionList.key]: updateDistributionList
   },
 };

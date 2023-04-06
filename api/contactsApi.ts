@@ -485,6 +485,7 @@ const contactListInput = [
     required: true,
     label: "workspaceId",
     helpText: "Test",
+    dynamic: "workspaces.id.projectName",
   },
   {
     key: "limit",
@@ -534,6 +535,7 @@ const contactRetrieveInput = [
     required: true,
     label: "workspaceId",
     helpText: "Test",
+    dynamic: "workspaces.id.projectName",
   },
   {
     key: "contactId",
@@ -571,12 +573,14 @@ const contactUpdateInput = [
     required: true,
     label: "workspaceId",
     helpText: "Test",
+    dynamic: "workspaces.id.projectName",
   },
   {
     key: "contactId",
     required: true,
     label: "contactId",
     helpText: "Test",
+    dynamic: "contacts.id.firstName",
   },
   {
     key: "firstName",
@@ -1017,13 +1021,75 @@ const contactUpdateInput = [
   },
 ] as const;
 
+export const updateContact = {
+  key: "contactUpdate",
+  noun: "contact",
+  display: {
+    label: "Update Contact Resource",
+    description: "Updates a contact.",
+  },
+  operation: {
+    inputFields: generateInputFields(contactUpdateInput),
+    perform: async (
+      z: ZObject,
+      bundle: InputBundle<typeof contactUpdateInput>
+    ) => {
+      const { workspaceId, contactId, ...contact } = transformInputData(
+        bundle.inputData
+      );
+
+      const localVarPath =
+        bundle.authData.host +
+        "/workspaces/{workspaceId}/contacts".replace(
+          "{" + "workspaceId" + "}",
+          encodeURIComponent(String(workspaceId))
+        ) +
+        "/" +
+        encodeURIComponent(String(contactId));
+
+      let localVarQueryParameters: any = {};
+      let localVarHeaderParams: any = {};
+
+      localVarHeaderParams["Accept"] =
+        "application/vnd.whispir.contact-v1+json";
+      localVarHeaderParams["Content-Type"] =
+        "application/vnd.whispir.contact-v1+json";
+
+      let localVarUseFormData = false;
+
+      const responsePromise = z.request({
+        method: "PUT",
+        headers: addHeaders(localVarHeaderParams, bundle),
+        params: localVarQueryParameters,
+        url: localVarPath,
+        body: ObjectSerializer.serialize(contact, "Contact"),
+      });
+      return responsePromise.then((response) => {
+        if (
+          response.status &&
+          response.status >= 200 &&
+          response.status <= 299
+        ) {
+          let body = {};
+          body = ObjectSerializer.deserialize(response.data, "Contact");
+
+          return { id: contactId, ...body };
+        } else {
+          throw new z.errors.Error(response.data);
+        }
+      });
+    },
+  },
+};
+
 export const ContactsApi = {
   key: "contacts",
   noun: "Contacts",
   create: {
     display: {
-      label: "Create a Contacts",
-      description: "Test",
+      label: "Create a Contact",
+      description:
+        "Creates a Contact object. The Contact can be used as a recipient when sending multi-channel messages.",
     },
     operation: {
       inputFields: generateInputFields(contactCreateInput),
@@ -1031,7 +1097,6 @@ export const ContactsApi = {
         z: ZObject,
         bundle: InputBundle<typeof contactCreateInput>
       ) => {
-        console.log("here");
         const { workspaceId, ...contact } = transformInputData(
           bundle.inputData
         );
@@ -1076,6 +1141,113 @@ export const ContactsApi = {
               checkLocation && checkLocation[1] ? checkLocation[1] : undefined;
 
             return { id, ...body };
+          } else {
+            throw new z.errors.Error(response.data);
+          }
+        });
+      },
+    },
+  },
+  search: {
+    display: {
+      label: "Retrieve a contact",
+      description: "Get a contact by ID.",
+    },
+    operation: {
+      inputFields: generateInputFields(contactRetrieveInput),
+      perform: async (
+        z: ZObject,
+        bundle: InputBundle<typeof contactRetrieveInput>
+      ) => {
+        const { workspaceId, contactId } = transformInputData(bundle.inputData);
+
+        const localVarPath =
+          bundle.authData.host +
+          "/workspaces/{workspaceId}/contacts".replace(
+            "{" + "workspaceId" + "}",
+            encodeURIComponent(String(workspaceId))
+          ) +
+          "/" +
+          encodeURIComponent(String(contactId));
+
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = {};
+
+        let localVarFormParams: any = {};
+        localVarHeaderParams["Accept"] =
+          "application/vnd.whispir.contact-v1+json";
+        localVarHeaderParams["Content-Type"] =
+          "application/vnd.whispir.contact-v1+json";
+
+        let localVarUseFormData = false;
+
+        const responsePromise = z.request({
+          method: "GET",
+          headers: addHeaders(localVarHeaderParams, bundle),
+          params: localVarQueryParameters,
+          url: localVarPath,
+        });
+        return responsePromise.then((response) => {
+          if (
+            response.status &&
+            response.status >= 200 &&
+            response.status <= 299
+          ) {
+            return { id: contactId, ...response.data };
+          } else {
+            throw new z.errors.Error(response.data);
+          }
+        });
+      },
+    },
+  },
+  list: {
+    display: {
+      label: "List Contacts",
+      description:
+        "test",
+    },
+    operation: {
+      inputFields: generateInputFields(contactListInput),
+      perform: async (
+        z: ZObject,
+        bundle: InputBundle<typeof contactListInput>
+      ) => {
+        const { workspaceId } = transformInputData(bundle.inputData);
+
+        const localVarPath =
+          bundle.authData.host +
+          "/workspaces/{workspaceId}/contacts".replace(
+            "{" + "workspaceId" + "}",
+            encodeURIComponent(String(workspaceId))
+          );
+
+        let localVarQueryParameters: any = {};
+        let localVarHeaderParams: any = {};
+
+        let localVarFormParams: any = {};
+        localVarHeaderParams["Content-Type"] =
+          "application/vnd.whispir.contact-v1+json";
+        localVarHeaderParams["Accept"] =
+          "application/vnd.whispir.contact-v1+json";
+
+        let localVarUseFormData = false;
+
+        const responsePromise = z.request({
+          method: "GET",
+          headers: addHeaders(localVarHeaderParams, bundle),
+          params: localVarQueryParameters,
+          url: localVarPath,
+        });
+
+        return responsePromise.then((response) => {
+          if (
+            response.status &&
+            response.status >= 200 &&
+            response.status <= 299
+          ) {
+            const { contacts } = response.data;
+            return contacts;
           } else {
             throw new z.errors.Error(response.data);
           }
