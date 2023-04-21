@@ -1021,73 +1021,12 @@ const contactUpdateInput = [
   },
 ] as const;
 
-export const updateContact = {
-  key: "contactUpdate",
-  noun: "contact",
-  display: {
-    label: "Update Contact Resource",
-    description: "Updates a contact.",
-  },
-  operation: {
-    inputFields: generateInputFields(contactUpdateInput),
-    perform: async (
-      z: ZObject,
-      bundle: InputBundle<typeof contactUpdateInput>
-    ) => {
-      const { workspaceId, contactId, ...contact } = transformInputData(
-        bundle.inputData
-      );
-
-      const localVarPath =
-        bundle.authData.host +
-        "/workspaces/{workspaceId}/contacts".replace(
-          "{" + "workspaceId" + "}",
-          encodeURIComponent(String(workspaceId))
-        ) +
-        "/" +
-        encodeURIComponent(String(contactId));
-
-      let localVarQueryParameters: any = {};
-      let localVarHeaderParams: any = {};
-
-      localVarHeaderParams["Accept"] =
-        "application/vnd.whispir.contact-v1+json";
-      localVarHeaderParams["Content-Type"] =
-        "application/vnd.whispir.contact-v1+json";
-
-      let localVarUseFormData = false;
-
-      const responsePromise = z.request({
-        method: "PUT",
-        headers: addHeaders(localVarHeaderParams, bundle),
-        params: localVarQueryParameters,
-        url: localVarPath,
-        body: ObjectSerializer.serialize(contact, "Contact"),
-      });
-      return responsePromise.then((response) => {
-        if (
-          response.status &&
-          response.status >= 200 &&
-          response.status <= 299
-        ) {
-          let body = {};
-          body = ObjectSerializer.deserialize(response.data, "Contact");
-
-          return { id: contactId, ...body };
-        } else {
-          throw new z.errors.Error(response.data);
-        }
-      });
-    },
-  },
-};
-
 export const ContactsApi = {
   key: "contacts",
   noun: "Contacts",
   create: {
     display: {
-      label: "Create a Contact",
+      label: "Create Contact",
       description:
         "Creates a Contact object. The Contact can be used as a recipient when sending multi-channel messages.",
     },
@@ -1152,6 +1091,7 @@ export const ContactsApi = {
     display: {
       label: "Retrieve a contact",
       description: "Get a contact by ID.",
+      hidden: true,
     },
     operation: {
       inputFields: generateInputFields(contactRetrieveInput),
@@ -1204,8 +1144,8 @@ export const ContactsApi = {
   list: {
     display: {
       label: "List Contacts",
-      description:
-        "test",
+      hidden: true,
+      description: "List available contacts in a given workspace",
     },
     operation: {
       inputFields: generateInputFields(contactListInput),
