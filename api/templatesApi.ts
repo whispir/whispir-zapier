@@ -770,7 +770,8 @@ export const TemplatesApi = {
   list: {
     display: {
       label: "List Templates",
-      description: "Test",
+      description: "List templates for a given workspace",
+      hidden: true,
     },
     operation: {
       inputFields: generateInputFields(templateListInput),
