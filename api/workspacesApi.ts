@@ -115,6 +115,7 @@ export const WorkspacesApi = {
     display: {
       label: "Create a Workspaces",
       description: "Test",
+      hidden: true,
     },
     operation: {
       inputFields: generateInputFields(workspaceCreateInput),
@@ -171,6 +172,7 @@ export const WorkspacesApi = {
       label: "List Workspaces",
       description:
         "Triggers when selecting a value for workspaceId is required.",
+      hidden: true,
     },
     operation: {
       inputFields: generateInputFields(workspaceListInput),
