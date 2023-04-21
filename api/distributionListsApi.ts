@@ -259,9 +259,9 @@ const distributionListUpdateInput = [
 
 export const updateDistributionList = {
   key: "distributionLists",
-  noun: "DistributionLists",
+  noun: "distributionList",
   display: {
-    label: "Update a distribution list",
+    label: "Update Distribution List",
     description:
       "Any or all three of these can be updated via the PUT method along with the DL properties (name, description, location etc)",
   },
@@ -307,7 +307,7 @@ export const updateDistributionList = {
           response.status <= 299
         ) {
           let body = {};
-          body = ObjectSerializer.deserialize(response.data, "Contact");
+          body = ObjectSerializer.deserialize(response.data, "DistributionList");
 
           return { id: distributionListId, ...body };
         } else {
@@ -324,7 +324,8 @@ export const DistributionListsApi = {
   list: {
     display: {
       label: "List Distribution Lists",
-      description: "Test",
+      description: "List distribution lists for a given workspace",
+      hidden: true,
     },
     operation: {
       inputFields: generateInputFields(distributionListListInput),
@@ -401,6 +402,7 @@ export const DistributionListsApi = {
     display: {
       label: "Find Distribution List",
       description: "Test",
+      hidden: true,
     },
     operation: {
       inputFields: generateInputFields(distributionListRetrieveInput),
