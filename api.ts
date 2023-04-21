@@ -1,10 +1,19 @@
 import { VERSION } from "./version";
 import { authentication } from "./authentication";
-import { ContactsApi, updateContact } from "./api/contactsApi";
+import { ContactsApi } from "./api/contactsApi";
 import { WorkspacesApi } from "./api/workspacesApi";
-import { MessagesApi, sendTemplatedMessage } from "./api/messagesApi";
-import { DistributionListsApi, updateDistributionList } from "./api/distributionListsApi";
+import { DistributionListsApi } from "./api/distributionListsApi";
 import { TemplatesApi } from "./api/templatesApi";
+import { CallbacksApi } from "./api/callbacksApi";
+import { MessageReplyTriggerHook } from "./triggers/messageReply";
+import { MessageUndeliveredTriggerHook } from "./triggers/messageUndelivered";
+import { sendEmailMessage } from "./creates/sendEmailMessage";
+import { sendSMSMessage } from "./creates/sendSMSMessage";
+import { sendTemplatedMessage } from "./creates/sendTemplateMessage";
+import { updateContact } from "./creates/updateContact";
+import { updateDistributionList } from "./creates/updateDistributionList";
+import { runScenario } from "./creates/runScenario";
+
 const handleHTTPError = (response, z) => {
   if (response.status >= 400) {
     throw new Error(`Unexpected status code ${response.status}`);
@@ -13,8 +22,6 @@ const handleHTTPError = (response, z) => {
 };
 
 export const App = {
-  // This is just shorthand to reference the installed dependencies you have. Zapier will
-  // need to know these before we can upload
   version: VERSION,
   platformVersion: require("zapier-platform-core").version,
   authentication: authentication,
@@ -26,16 +33,24 @@ export const App = {
 
   // If you want to define optional resources to simplify creation of triggers, searches, creates - do that here!
   resources: {
-    [ContactsApi.key]: ContactsApi,
+    [TemplatesApi.key]: TemplatesApi,
+    [CallbacksApi.key]: CallbacksApi,
     [WorkspacesApi.key]: WorkspacesApi,
-    [MessagesApi.key]: MessagesApi,
+    [ContactsApi.key]: ContactsApi,
     [DistributionListsApi.key]: DistributionListsApi,
-    [TemplatesApi.key]: TemplatesApi
   },
 
   creates: {
-    contactUpdate: updateContact,
-    sendTemplatedMessage: sendTemplatedMessage,
-    [updateDistributionList.key]: updateDistributionList
+    [updateContact.key]: updateContact,
+    [updateDistributionList.key]: updateDistributionList,
+    [runScenario.key]: runScenario,
+    [sendTemplatedMessage.key]: sendTemplatedMessage,
+    [sendEmailMessage.key]: sendEmailMessage,
+    [sendSMSMessage.key]: sendSMSMessage,
+  },
+
+  triggers: {
+    [MessageReplyTriggerHook.key]: MessageReplyTriggerHook,
+    [MessageUndeliveredTriggerHook.key]: MessageUndeliveredTriggerHook,
   },
 };
