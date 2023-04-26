@@ -15,14 +15,6 @@ const messageReplyCallbackCreateInput = [
     helpText: "The name of the callback (make sure to provide a unique value)",
   },
   {
-    key: "url",
-    required: true,
-    label: "Url",
-    helpText:
-      "Specifies the service URL that API Callbacks should be forwarded to",
-    computed: true, // field automatically populated (and hidden from the user)
-  },
-  {
     key: "removeHTML",
     required: false,
     label: "RemoveHTML",
