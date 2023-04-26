@@ -5,14 +5,15 @@ import { WorkspacesApi } from "./api/workspacesApi";
 import { DistributionListsApi } from "./api/distributionListsApi";
 import { TemplatesApi } from "./api/templatesApi";
 import { CallbacksApi } from "./api/callbacksApi";
-import { MessageReplyTriggerHook } from "./triggers/messageReply";
-import { MessageUndeliveredTriggerHook } from "./triggers/messageUndelivered";
-import { sendEmailMessage } from "./creates/sendEmailMessage";
-import { sendSMSMessage } from "./creates/sendSMSMessage";
-import { sendTemplatedMessage } from "./creates/sendTemplateMessage";
-import { updateContact } from "./creates/updateContact";
-import { updateDistributionList } from "./creates/updateDistributionList";
-import { runScenario } from "./creates/runScenario";
+import {
+  MessageReplyTriggerHook,
+  MessageUndeliveredTriggerHook,
+} from "./triggers";
+import {
+  sendEmailMessage,
+  sendSMSMessage,
+  sendTemplatedMessage,
+} from "./creates";
 
 const handleHTTPError = (response, z) => {
   if (response.status >= 400) {
@@ -41,9 +42,6 @@ export const App = {
   },
 
   creates: {
-    [updateContact.key]: updateContact,
-    [updateDistributionList.key]: updateDistributionList,
-    [runScenario.key]: runScenario,
     [sendTemplatedMessage.key]: sendTemplatedMessage,
     [sendEmailMessage.key]: sendEmailMessage,
     [sendSMSMessage.key]: sendSMSMessage,
