@@ -139,7 +139,6 @@ const getFallbackMessageUndeliveredSample = (z: ZObject, bundle: Bundle) => {
       recpientMobileNumber: "048939393",
       recipientEmail: "test@test.com",
       recipientVoice: "048939393",
-      recpientResponseContent: "mocked-response",
     },
   ];
 };
@@ -165,7 +164,6 @@ export const MessageUndeliveredTriggerHook = {
       recpientMobileNumber: "048939393",
       recipientEmail: "test",
       recipientVoice: "048939393",
-      recpientResponseContent: "anything",
     },
     outputFields: [
       { key: "recipientName", label: "Recipient Name" },
