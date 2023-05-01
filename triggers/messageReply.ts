@@ -40,7 +40,7 @@ const messageReplyCallbackCreateInput = [
     required: true,
     label: "Email",
     helpText:
-      "Whispir notify this email address that a callback has failed (only when retries are disabled)",
+      "Whispir notifies this email address when a callback has failed (only when retries are disabled)",
   },
 ] as const;
 
