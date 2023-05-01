@@ -12,7 +12,7 @@
         "clean": "rm -Rf node_modules/ *.js",
         "build": "tsc",
         "test": "zapier test",
-        "push": "zapier push"
+        "push": "zapier validate && zapier push"
     },
     "author": "OpenAPI-Generator Contributors",
     "license": "MIT",
