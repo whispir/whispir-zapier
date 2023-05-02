@@ -114,7 +114,6 @@ const parseMessageUndeliveredPayload = async (z: ZObject, bundle: Bundle) => {
     cleanedRequest: {
       messageId,
       from: { name, mobile, email, voice },
-      responseMessage: { content },
     },
   } = bundle;
 
@@ -125,7 +124,6 @@ const parseMessageUndeliveredPayload = async (z: ZObject, bundle: Bundle) => {
     recpientMobileNumber: mobile,
     recipientEmail: email,
     recipientVoice: voice,
-    recpientResponseContent: content,
   };
 
   return [payload];
@@ -135,6 +133,7 @@ const getFallbackMessageUndeliveredSample = (z: ZObject, bundle: Bundle) => {
   return [
     {
       id: "8f11e67b-ea85-4b67-bcf7-6f8dd25515ae",
+      messageId: "9D7AD06AB686DFBD",
       recipientName: "mocked-name",
       recpientMobileNumber: "048939393",
       recipientEmail: "test@test.com",
@@ -160,17 +159,17 @@ export const MessageUndeliveredTriggerHook = {
     performList: getFallbackMessageUndeliveredSample,
     sample: {
       id: "some-id",
-      recipientName: "Best Spagetti Ever",
-      recpientMobileNumber: "048939393",
-      recipientEmail: "test",
-      recipientVoice: "048939393",
+      messageId: "9D7AD06AB686DFBD",
+      recipientName: "John Doe",
+      recpientMobileNumber: "04893939333",
+      recipientEmail: "john@doe.com",
+      recipientVoice: "04893939333",
     },
     outputFields: [
       { key: "recipientName", label: "Recipient Name" },
       { key: "recpientMobileNumber", label: "Recipient Mobile Number" },
       { key: "recipientEmail", label: "Recipient Email" },
       { key: "recipientVoice", label: "Recipient Voice" },
-      { key: "recpientResponseContent", label: "Message Reply Content" },
     ],
   },
 };
