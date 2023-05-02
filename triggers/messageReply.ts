@@ -135,10 +135,11 @@ const getFallbackMessageReplySample = (z: ZObject, bundle: Bundle) => {
   return [
     {
       id: "8f11e67b-ea85-4b67-bcf7-6f8dd25515ae",
-      recipientName: "mocked-name",
-      recpientMobileNumber: "048939393",
-      recipientEmail: "test@test.com",
-      recipientVoice: "048939393",
+      messageid: "9D7AD06AB686DFBD",
+      recipientName: "John Doe",
+      recpientMobileNumber: "04893939333",
+      recipientEmail: "john@doe.com",
+      recipientVoice: "04893939333",
       recpientResponseContent: "mocked-response",
     },
   ];
@@ -167,10 +168,11 @@ export const MessageReplyTriggerHook = {
 
     sample: {
       id: "some-id",
-      recipientName: "Best Spagetti Ever",
-      recpientMobileNumber: "048939393",
-      recipientEmail: "test",
-      recipientVoice: "048939393",
+      messageId: "9D7AD06AB686DFBD",
+      recipientName: "John Doe",
+      recpientMobileNumber: "04893939333",
+      recipientEmail: "john@doe.com",
+      recipientVoice: "04893939333",
       recpientResponseContent: "anything",
     },
 
