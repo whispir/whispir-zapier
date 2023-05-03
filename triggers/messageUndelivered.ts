@@ -64,7 +64,7 @@ const subscribeMessageUndeliveredHook = (
     contentType: "json",
     callbacks: {
       reply: "disabled",
-      undelivered: "enabled",
+      undeliverable: "enabled",
     },
   };
 
