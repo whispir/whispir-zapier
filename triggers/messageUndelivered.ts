@@ -99,13 +99,11 @@ const unsubscribeMessageUndeliveredHook = (z: ZObject, bundle: Bundle) => {
     Accept: "application/vnd.whispir.api-callback-v1+json",
   };
 
-  return z
-    .request({
-      url: `${bundle.authData.host}/callbacks/${hookId}`,
-      method: "DELETE",
-      headers: addHeaders(headers, bundle),
-    })
-    .then((response) => z.JSON.parse(response.data));
+  return z.request({
+    url: `${bundle.authData.host}/callbacks/${hookId}`,
+    method: "DELETE",
+    headers: addHeaders(headers, bundle),
+  });
 };
 
 // Step 3: Write the perform Function
@@ -113,17 +111,22 @@ const parseMessageUndeliveredPayload = async (z: ZObject, bundle: Bundle) => {
   const {
     cleanedRequest: {
       messageId,
-      from: { name, mobile, email, voice },
+      customParameters: {
+        recipient_full_name = "",
+        recipient_email = "",
+        recipient_sms = "",
+        recpient_voice = "",
+      },
     },
   } = bundle;
 
   const payload = {
     id: uuidv4(),
     messageId,
-    recipientName: name,
-    recpientMobileNumber: mobile,
-    recipientEmail: email,
-    recipientVoice: voice,
+    recipientName: recipient_full_name,
+    recpientMobileNumber: recipient_sms,
+    recipientEmail: recipient_email,
+    recipientVoice: recpient_voice,
   };
 
   return [payload];
