@@ -7,8 +7,6 @@ import {
 import { addHeaders } from "../authentication";
 import { v4 as uuidv4 } from "uuid";
 
-const PHONE_REGEX = /^(\+?\d{1,3}\s?)?\d{2,4}(\s?\d{3,4}){2}$/;
-
 const messageUndeliveredCallbackCreateInput = [
   {
     key: "name",
