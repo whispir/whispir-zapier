@@ -10,16 +10,16 @@ const sendSMSMessageInput = [
   {
     key: "workspaceId",
     required: true,
-    label: "workspaceId",
+    label: "Workspace ID",
     helpText: "The identifier for the workspace.",
     dynamic: "workspaces.id.projectName",
   },
   {
     key: "to",
     required: true,
-    label: "To",
+    label: "Mobile Phone Number", 
     helpText:
-      "Allows a combination of phone numbers, email address, Whispir Contact MRIs, User MRI, Distribution List MRI, separated by ,",
+      "Allows a com   bination of phone numbers, email address, Whispir Contact MRIs, User MRI, Distribution List MRI, separated by ,",
   },
   {
     key: "subject",
@@ -30,26 +30,18 @@ const sendSMSMessageInput = [
   {
     key: "body",
     required: false,
-    label: "Body",
+    label: "SMS Body",
     helpText: `The SMS body. The total SMS length is 1570 characters for english text and 800 when UTF-8 characters are used (primarily non-english)
     The 1570 length is a combination of subject and body.`,
   },
   {
     key: "callbackId",
     required: false,
-    label: "CallbackId",
+    label: "Callback Name",
     helpText:
       "The identifier for the Callback to be invoked on Message delivery events",
-    dynamic: "callbacks.name.id",
-  },
-  {
-    key: "callbackParameters",
-    required: false,
-    label: "CallbackParameters",
-    helpText:
-      "Set of key-value pairs that you can attach to a callback. This can be useful for returning additional information about the object in a structured format",
-    dict: true,
-  },
+    dynamic: "callbacks.name",
+  }
 ] as const;
 
 export const sendSMSMessage = {
