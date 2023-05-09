@@ -17,22 +17,22 @@ const messageUndeliveredCallbackCreateInput = [
   {
     key: "removeHTML",
     required: false,
-    label: "RemoveHTML",
+    label: "Do you want to remove HTML?",
     helpText: "Specifies whether HTML should be stripped from responses.",
     choices: {
-      enabled: "enabled",
-      disabled: "disabled",
+      yes: "enabled",
+      no: "disabled",
     },
   },
   {
     key: "retriesEnabled",
     required: false,
-    label: "Retries Enabled",
+    label: "Do you want to enable callback retries?",
     helpText:
       "Specifies whether Whispir should perform retries in the event there is a failure accessing the callback service.",
     choices: {
-      true: true,
-      false: false,
+      yes: true,
+      no: false,
     },
   },
   {
