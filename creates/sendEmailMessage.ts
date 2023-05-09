@@ -10,14 +10,14 @@ const sendEmailMessageInput = [
   {
     key: "workspaceId",
     required: true,
-    label: "workspaceId",
+    label: "Workspace ID",
     helpText: "The identifier for the workspace.",
     dynamic: "workspaces.id.projectName",
   },
   {
     key: "to",
     required: true,
-    label: "To",
+    label: "Recipient Email Address",
     helpText:
       "Allows a combination of phone numbers, email address, Whispir Contact MRIs, User MRI, Distribution List MRI, separated by ,",
   },
@@ -64,15 +64,7 @@ const sendEmailMessageInput = [
     helpText:
       "The identifier for the Callback to be invoked on Message delivery events",
     dynamic: "callbacks.name.id",
-  },
-  {
-    key: "callbackParameters",
-    required: false,
-    label: "CallbackParameters",
-    helpText:
-      "Set of key-value pairs that you can attach to a callback. This can be useful for returning additional information about the object in a structured format",
-    dict: true,
-  },
+  }
 ] as const;
 
 export const sendEmailMessage = {
