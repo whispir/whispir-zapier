@@ -10,39 +10,31 @@ const sendTemplatedMessageInput = [
   {
     key: "workspaceId",
     required: true,
-    label: "workspaceId",
+    label: "Workspace ID",
     helpText: "The identifier for the workspace.",
     dynamic: "workspaces.id.projectName",
   },
   {
     key: "to",
     required: true,
-    label: "To",
+    label: "Recipients",
     helpText:
-      "Allows a combination of phone numbers, email address, Whispir Contact MRIs, User MRI, Distribution List MRI, separated by ,",
+      "Allows a combination of phone numbers, email address, Whispir Contact MRIs, User MRI, Distribution List MRI, separated by (,)",
   },
   {
     key: "messageTemplateId",
     required: true,
-    label: "MessageTemplateId",
+    label: "Message Template ID",
     helpText: "The identifier for the Message Template",
     dynamic: "templates.id.messageTemplateName",
   },
   {
     key: "callbackId",
     required: false,
-    label: "CallbackId",
+    label: "Callback Name",
     helpText:
       "The identifier for the Callback to be invoked on Message delivery events",
-    dynamic: "callbacks.name.id",
-  },
-  {
-    key: "callbackParameters",
-    required: false,
-    label: "CallbackParameters",
-    helpText:
-      "Set of key-value pairs that you can attach to a callback. This can be useful for returning additional information about the object in a structured format",
-    dict: true,
+    dynamic: "callbacks.name",
   },
 ] as const;
 
