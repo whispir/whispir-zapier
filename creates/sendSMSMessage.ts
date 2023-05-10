@@ -19,7 +19,7 @@ const sendSMSMessageInput = [
     required: true,
     label: "Mobile Phone Number", 
     helpText:
-      "Allows a com   bination of phone numbers, email address, Whispir Contact MRIs, User MRI, Distribution List MRI, separated by ,",
+      "Allows a combination of phone numbers, email address, Whispir Contact MRIs, User MRI, Distribution List MRI, separated by ,",
   },
   {
     key: "subject",
