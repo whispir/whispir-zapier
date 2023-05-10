@@ -19,7 +19,7 @@ const sendTemplatedMessageInput = [
     required: true,
     label: "Recipients",
     helpText:
-      "Allows a combination of phone numbers, email address, Whispir Contact MRIs, User MRI, Distribution List MRI, separated by ,",
+      "Allows a combination of phone numbers, email address, Whispir Contact MRIs, User MRI, Distribution List MRI, separated by (,)",
   },
   {
     key: "messageTemplateId",
@@ -35,7 +35,7 @@ const sendTemplatedMessageInput = [
     helpText:
       "The identifier for the Callback to be invoked on Message delivery events",
     dynamic: "callbacks.name",
-  }
+  },
 ] as const;
 
 export const sendTemplatedMessage = {
