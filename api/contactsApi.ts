@@ -52,7 +52,7 @@ const contactCreateInput = [
     label: "Time Zone",
     placeholder: "Australia/Melbourne",
     helpText:
-      "The time zone in which the contact lives in. Values are relative to GMT",
+      "The time zone in which the contact lives. Values are relative to GMT, please use Timezone ID format e.g Australia/Melbourne",
   },
   {
     key: "title",
@@ -306,8 +306,8 @@ const contactCreateInput = [
     label: "Status",
     helpText: "The validity status of the contact, either Active or Disabled.",
     choices: {
-      A: "A",
-      D: "D",
+      Active: "A",
+      Disabled: "D",
     },
   },
   {
