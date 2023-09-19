@@ -20,19 +20,20 @@ const messageReplyCallbackCreateInput = [
     label: "Do you want to remove HTML?",
     helpText: "Specifies whether HTML should be stripped from responses.",
     choices: {
-      yes: "enabled",
-      no: "disabled",
+      enabled: "Yes",
+      disabled: "No",
     },
   },
   {
     key: "retriesEnabled",
     required: false,
+    type: "boolean",
     label: "Do you want to enable callback retries?",
     helpText:
       "Specifies whether Whispir should perform retries in the event there is a failure accessing the callback service.",
     choices: {
-      yes: true,
-      no: false,
+      true: "yes",
+      false: "no",
     },
   },
   {
@@ -113,6 +114,9 @@ const parseMessageReplyPayload = async (z: ZObject, bundle: Bundle) => {
   const {
     cleanedRequest: {
       messageId,
+      /**
+       * The `from` instance is referring to the recipient who sends a reply to the message 
+       */
       from: { name, mobile, email, voice },
       responseMessage: { content },
     },
@@ -135,7 +139,7 @@ const getFallbackMessageReplySample = (z: ZObject, bundle: Bundle) => {
   return [
     {
       id: "8f11e67b-ea85-4b67-bcf7-6f8dd25515ae",
-      messageid: "9D7AD06AB686DFBD",
+      messageId: "9D7AD06AB686DFBD",
       recipientName: "John Doe",
       recpientMobileNumber: "04893939333",
       recipientEmail: "john@doe.com",
@@ -167,13 +171,13 @@ export const MessageReplyTriggerHook = {
     performList: getFallbackMessageReplySample,
 
     sample: {
-      id: "some-id",
+      id: "8f11e67b-ea85-4b67-bcf7-6f8dd25515ae",
       messageId: "9D7AD06AB686DFBD",
       recipientName: "John Doe",
       recpientMobileNumber: "04893939333",
       recipientEmail: "john@doe.com",
       recipientVoice: "04893939333",
-      recpientResponseContent: "anything",
+      recpientResponseContent: "mocked-response",
     },
 
     outputFields: [
