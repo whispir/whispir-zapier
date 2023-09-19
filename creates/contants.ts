@@ -1,6 +1,6 @@
 export const sendMessageSampleResponse = {
   callbackId: "callbackhutomo",
-  to: "testuser@whispir.whispir.com",
+  to: "testuser@whispir.com",
   subject: "This is a rich template for email message",
   body: "",
   senderAlias: "",
