@@ -28,11 +28,12 @@ const messageUndeliveredCallbackCreateInput = [
     key: "retriesEnabled",
     required: false,
     label: "Do you want to enable callback retries?",
+    type: "boolean",
     helpText:
       "Specifies whether Whispir should perform retries in the event there is a failure accessing the callback service.",
     choices: {
-      yes: true,
-      no: false,
+      true: "yes",
+      false: "no",
     },
   },
   {
@@ -111,6 +112,9 @@ const parseMessageUndeliveredPayload = async (z: ZObject, bundle: Bundle) => {
   const {
     cleanedRequest: {
       messageId,
+      /**
+       * we are using custom paramerters here to expose the intended recipient details
+       */
       customParameters: {
         recipient_full_name = "",
         recipient_email = "",

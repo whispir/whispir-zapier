@@ -1,0 +1,130 @@
+export const sendMessageSampleResponse = {
+  callbackId: "callbackhutomo",
+  to: "testuser@whispir.com",
+  subject: "This is a rich template for email message",
+  body: "",
+  senderAlias: "",
+  label: "",
+  type: "default",
+  repetitionCount: 0,
+  dlr: {
+    period: "",
+    rule: "",
+    type: "",
+    publishToWeb: false,
+    expiryDay: 0,
+    expiryHour: 0,
+    expiryMin: 0,
+    feedIds: "",
+    bool: false,
+  },
+  repeatDays: 0,
+  repeatHrs: 0,
+  repeatMin: 0,
+  email: {
+    type: "text/html",
+    body: '<center><table><tr><td width="600"><!--design-->\n<!--Version: 4.0.0.0_2018-04-06_1200-->\n<table width="600" style="background-color:#66c3ee; width: 100%; max-width:100%;" border="0" cellpadding="0" cellspacing="0">\n  <tr>\n    <td valign="top" style="padding: 0 10%">   \n      <p style="color:#000;font-family:Georgia, Times, \'Times New Roman\', serif;; margin:50px 0px 20px 0px; font-weight:normal; font-style:normal; font-size:40px; text-align:center;">Hero text here email</p>\n      <p style="color:#000;font-family:Georgia, Times, \'Times New Roman\', serif;; margin:0px 0px 40px 0px; font-weight:normal; font-style:normal; font-size:25px; text-align:center;">Hi @@recipient_first_name@@</p>\n    </td>\n  </tr> \n</table>\n</td></tr></table></center>',
+    footer: "",
+  },
+  voice: {},
+  from: "devex.au@User.whispir.com",
+  direction: "OUTGOING",
+  responseCount: "4",
+  social: {
+    social: [
+      {
+        id: "socialType",
+        body: "text/plain",
+      },
+      {
+        id: "social_long",
+      },
+      {
+        id: "social",
+      },
+    ],
+  },
+  createdTime: 1695000696000,
+  messageattributes: {
+    attribute: [
+      {
+        name: "Boot1",
+        value: "",
+      },
+      {
+        name: "Boot2",
+        value: "",
+      },
+      {
+        name: "Boot3",
+        value: "",
+      },
+      {
+        name: "Boot4",
+        value: "",
+      },
+      {
+        name: "Boot5",
+        value: "",
+      },
+      {
+        name: "SampleData",
+        value: "",
+      },
+    ],
+  },
+  link: [
+    {
+      uri: "https://api.au.whispir.com/workspaces/6B6B47E983931C11/messages/5CFC0CBC38D1D3B52F77FD11EBCEC2E7",
+      rel: "self",
+      method: "GET",
+      host: "api.au.whispir.com",
+      port: -1,
+    },
+    {
+      uri: "https://api.au.whispir.com/workspaces/6B6B47E983931C11/messages/5CFC0CBC38D1D3B52F77FD11EBCEC2E7/messagestatus?view=summary",
+      rel: "summaryStatus",
+      method: "GET",
+      host: "api.au.whispir.com",
+      port: -1,
+    },
+    {
+      uri: "https://api.au.whispir.com/workspaces/6B6B47E983931C11/messages/5CFC0CBC38D1D3B52F77FD11EBCEC2E7/messagestatus?view=detailed",
+      rel: "detailedStatus",
+      method: "GET",
+      host: "api.au.whispir.com",
+      port: -1,
+    },
+    {
+      uri: "https://api.au.whispir.com/workspaces/6B6B47E983931C11/messages/5CFC0CBC38D1D3B52F77FD11EBCEC2E7/messageresponses?view=summary&filter=default",
+      rel: "summaryResponses",
+      method: "GET",
+      host: "api.au.whispir.com",
+      port: -1,
+    },
+    {
+      uri: "https://api.au.whispir.com/workspaces/6B6B47E983931C11/messages/5CFC0CBC38D1D3B52F77FD11EBCEC2E7/messageresponses?view=detailed&filter=default",
+      rel: "detailedResponses",
+      method: "GET",
+      host: "api.au.whispir.com",
+      port: -1,
+    },
+    {
+      uri: "https://api.au.whispir.com/workspaces/6B6B47E983931C11/messages/5CFC0CBC38D1D3B52F77FD11EBCEC2E7/messageresponses?view=summary&filter=responserule",
+      rel: "summaryResponsesWithResponseRule",
+      method: "GET",
+      host: "api.au.whispir.com",
+      port: -1,
+    },
+    {
+      uri: "https://api.au.whispir.com/workspaces/6B6B47E983931C11/messages/5CFC0CBC38D1D3B52F77FD11EBCEC2E7/messageresponses?view=detailed&filter=responserule",
+      rel: "detailedResponsesWithResponseRule",
+      method: "GET",
+      host: "api.au.whispir.com",
+      port: -1,
+    },
+  ],
+  validBody: true,
+  validSubject: true,
+  whatsappValidMessage: true,
+};

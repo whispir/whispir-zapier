@@ -5,6 +5,7 @@ import {
   InputBundle,
 } from "../api/apis";
 import { addHeaders } from "../authentication";
+import { sendMessageSampleResponse } from "./contants";
 
 const sendSMSMessageInput = [
   {
@@ -72,30 +73,55 @@ export const sendSMSMessage = {
         Accept: "application/vnd.whispir.message-v1+json",
       };
 
-      const responsePromise = z.request({
-        method: "POST",
-        headers: addHeaders(headers, bundle),
-        url: localVarPath,
-        body: message,
-      });
+      try {
+        const response = await z.request({
+          method: "POST",
+          headers: addHeaders(headers, bundle),
+          url: localVarPath,
+          body: message,
+        });
 
-      return responsePromise.then((response) => {
-        if (
-          response.status &&
-          response.status >= 200 &&
-          response.status <= 299
-        ) {
-          // Special case to extract the resource identifier from the `Location` header.
-          const checkLocation =
-            response?.headers?.location?.match(/\/([^\/]+)\/?$/);
-          let id =
-            checkLocation && checkLocation[1] ? checkLocation[1] : undefined;
+        // Special case to extract the resource identifier from the `Location` header.
+        const checkLocation = response
+          .getHeader("location")!
+          .match(/\/([^\/]+)\/?$/);
 
-          return { id, ...response.data };
-        } else {
-          throw new z.errors.Error(response.data);
-        }
-      });
+        let id =
+          checkLocation && checkLocation[1] ? checkLocation[1] : undefined;
+
+        const retrievedMessage = await z.request({
+          method: "GET",
+          headers: addHeaders(headers, bundle),
+          url: localVarPath + `/${id}`,
+        });
+
+        return { id, ...retrievedMessage.data };
+      } catch (e: any) {
+        throw new z.errors.Error(e);
+      }
     },
+    sample: sendMessageSampleResponse,
+    outputFields: [
+      {
+        key: "senderAlias",
+        label: "Sender Alias",
+      },
+      {
+        key: "to",
+        label: "Recipient",
+      },
+      {
+        key: "subject",
+        label: "Subject",
+      },
+      {
+        key: "from",
+        label: "Sender",
+      },
+      {
+        key: "body",
+        label: "SMS Message",
+      },
+    ],
   },
 };

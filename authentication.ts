@@ -51,6 +51,7 @@ export const authentication = {
         "Found on your settings page. [API Details](https://developers.whispir.com/2a21cad9e5da7-authentication)",
     },
   ],
+  connectionLabel: "{{bundle.inputData.username}}",
 };
 
 export const addHeaders = (headers, bundle) => {
